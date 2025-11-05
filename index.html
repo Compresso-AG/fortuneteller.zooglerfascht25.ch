@@ -337,13 +337,16 @@
         </div>
 
         <div id="step-2" class="screen pb-32">
-            <h2 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wähle deine:n</span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">Seher:in des Schicksals</span>
+             <h2 class="font-title text-shadow mb-8">
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wie willst du</span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">dein Schicksal hören?</span>
             </h2>
             <div class="relative w-full max-w-5xl">
                 <div id="step-2-arrow-left" class="carousel-arrow arrow-left"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></div>
                 <div id="step-2-card-container" class="card-container">
+                    <div class="psychic-card" data-index="0" data-level="1"><img src="./images/google_level1.png" alt="The Internal Hype Machine"></div>
+                    <div class="psychic-card" data-index="1" data-level="2"><img src="./images/google_level2.png" alt="The Unverified Alpha Test"></div>
+                    <div class="psychic-card" data-index="2" data-level="3"><img src="./images/google_level3.png" alt="The Disruptor's Memo"></div>
                 </div>
                 <div id="step-2-arrow-right" class="carousel-arrow arrow-right"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></div>
             </div>
@@ -352,28 +355,8 @@
                 <p id="step-2-text" class="text-lg font-body-text"></p>
             </div>
         </div>
-        
-        <div id="step-3" class="screen pb-32">
-             <h2 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wie willst du</span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">dein Schicksal hören?</span>
-            </h2>
-            <div class="relative w-full max-w-5xl">
-                <div id="step-3-arrow-left" class="carousel-arrow arrow-left"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></div>
-                <div id="step-3-card-container" class="card-container">
-                    <div class="psychic-card" data-index="0" data-level="1"><img src="./images/google_level1.png" alt="The Internal Hype Machine"></div>
-                    <div class="psychic-card" data-index="1" data-level="2"><img src="./images/google_level2.png" alt="The Unverified Alpha Test"></div>
-                    <div class="psychic-card" data-index="2" data-level="3"><img src="./images/google_level3.png" alt="The Disruptor's Memo"></div>
-                </div>
-                <div id="step-3-arrow-right" class="carousel-arrow arrow-right"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></div>
-            </div>
-            <div id="step-3-description" class="description h-24 mt-8">
-                <h3 id="step-3-title" class="font-title text-2xl text-white"></h3>
-                <p id="step-3-text" class="text-lg font-body-text"></p>
-            </div>
-        </div>
 
-        <div id="step-4" class="screen pb-32" style="padding-bottom: 7rem;">
+        <div id="step-3" class="screen pb-32" style="padding-bottom: 7rem;">
              <h2 class="font-title text-shadow mb-8">
                 <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wähle 3 Themen – </span><br>
                 <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">wir sagen dir, was kommt.</span>
@@ -381,7 +364,7 @@
             <div id="topic-container" class="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-3xl"></div>
         </div>
 
-        <div id="step-5" class="screen pb-32">
+        <div id="step-4" class="screen pb-32">
             <h2 class="font-title text-shadow mb-8">
                 <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wohin sollen</span><br>
                 <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">die Sterne flüstern?</span>
@@ -393,8 +376,8 @@
                 </form>
             </div>
         </div>
-        
-        <div id="step-6" class="screen">
+
+        <div id="step-5" class="screen">
              <h2 class="font-title text-shadow mb-8">
                 <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Deine Prophezeiung kommt</span><br>
                 <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">IN KÜRZE PER SMS.</span>
@@ -481,14 +464,14 @@
             // 3. App-State, Navigation und UI-Elemente
             const appState = {
                 selections: {
-                    'step-2': { index: null, wahrsagerId: null },
-                    'step-3': { index: null, level: null },
-                    'step-4': []
+                    wahrsagerId: null, // Auto-selected from API
+                    'step-2': { index: null, level: null },
+                    'step-3': []
                 },
                 formData: { vorname: '', handy: '' }
             };
             let currentStep = 1;
-            const totalSteps = 6;
+            const totalSteps = 5;
             const screens = document.querySelectorAll('.screen');
             const startBtn = document.getElementById('start-btn');
             const backBtn = document.getElementById('back-btn');
@@ -498,54 +481,31 @@
             const neustartBtn = document.getElementById('neustart-btn');
             const themeToggle = document.getElementById('theme-toggle');
 
-            // 4. REST-Call für Step 2 Daten
+            // 4. REST-Call für Wahrsager-Daten - auto-select first one
             let wahrsagerList = [];
             async function loadWahrsagerData() {
                 try {
                     const res = await fetch('https://api.fortuneteller.zooglerfascht25.ch/wp-json/wahrsager/v1/list');
                     wahrsagerList = await res.json();
+                    // Auto-select first Wahrsager
+                    if (wahrsagerList.length > 0) {
+                        appState.selections.wahrsagerId = wahrsagerList[0].id;
+                    }
                 } catch (e) {
                     console.error('Konnte Wahrsager-Daten nicht laden:', e);
                 }
             }
 
-            function renderStep2Cards() {
-                const container = document.getElementById('step-2-card-container');
-                container.innerHTML = ''; // alte Karten weg
-                // descriptions updaten
-                stepData['step-2'].descriptions = wahrsagerList.map(w => ({
-                    title: w.title,
-                    text:  w.description
-                }));
-                // neue Cards bauen
-                wahrsagerList.forEach((w, idx) => {
-                    const card = document.createElement('div');
-                    card.className = 'psychic-card';
-                    card.dataset.index = idx;
-                    card.dataset.wahrsagerId = w.id;
-                    const img = document.createElement('img');
-                    img.src = w.image;
-                    img.alt = w.title;
-                    card.appendChild(img);
-                    container.appendChild(card);
-                });
-            }
-
-            // 5. Carousel-, Topic- und Formular-Logik (unverändert)
+            // 5. Carousel-, Topic- und Formular-Logik
             const stepData = {
                 'step-2': {
-                    descriptions: [],
-                    titleElement: document.getElementById('step-2-title'),
-                    textElement:  document.getElementById('step-2-text')
-                },
-                'step-3': {
                     descriptions: [
                         { title: "The Internal Hype Machine", text: "Optimistic and energizing – your future served with a side of unlimited snacks and upbeat vibes." },
                         { title: "The Unverified Alpha Test", text: "Honest and straightforward – like a code review that tells you what you need to hear, not what you want." },
                         { title: "The Disruptor's Memo", text: "Bold and unfiltered – your cards won't sugarcoat it, they'll launch it into production without testing." }
                     ],
-                    titleElement: document.getElementById('step-3-title'),
-                    textElement:  document.getElementById('step-3-text')
+                    titleElement: document.getElementById('step-2-title'),
+                    textElement:  document.getElementById('step-2-text')
                 }
             };
 
@@ -571,11 +531,8 @@
                     cards[activeCardIndex]?.classList.remove('is-active');
                     activeCardIndex=index;
                     const active=cards[activeCardIndex];
-                    if (carouselId==='step-2') {
-                        appState.selections['step-2']={ index, wahrsagerId: active.dataset.wahrsagerId };
-                    } else {
-                        appState.selections['step-3']={ index, level: active.dataset.level };
-                    }
+                    // Step 2 is now the level selection
+                    appState.selections['step-2']={ index, level: active.dataset.level };
                     active.classList.add('is-active');
                     const desc=carouselData.descriptions[index%carouselData.descriptions.length];
                     carouselData.titleElement.textContent = desc.title;
@@ -611,14 +568,14 @@
                     const btn = document.createElement('button');
                     btn.className = 'topic-card bg-paper-texture';
                     btn.textContent = topic;
-                    if (appState.selections['step-4'].includes(topic)) btn.classList.add('is-selected');
+                    if (appState.selections['step-3'].includes(topic)) btn.classList.add('is-selected');
                     btn.addEventListener('click', () => {
-                        const sel = appState.selections['step-4'];
+                        const sel = appState.selections['step-3'];
                         if (btn.classList.toggle('is-selected')) {
                             if (sel.length<3) sel.push(topic);
                             else btn.classList.remove('is-selected');
                         } else {
-                            appState.selections['step-4'] = sel.filter(t=>t!==topic);
+                            appState.selections['step-3'] = sel.filter(t=>t!==topic);
                         }
                         checkNextButtonStatus();
                     });
@@ -650,9 +607,8 @@
             const checkNextButtonStatus = () => {
                 let en=false;
                 if (currentStep===2) en = appState.selections['step-2'].index!==null;
-                if (currentStep===3) en = appState.selections['step-3'].index!==null;
-                if (currentStep===4) en = appState.selections['step-4'].length===3;
-                if (currentStep===5) {
+                if (currentStep===3) en = appState.selections['step-3'].length===3;
+                if (currentStep===4) {
                     const { vorname, handy } = appState.formData;
                     en = vorname && handy && validatePhoneNumber(handy);
                 }
@@ -664,8 +620,8 @@
                 const p = new URLSearchParams();
                 const { vorname, handy } = appState.formData;
                 if (vorname) p.append('firstname',vorname);
-                [...appState.selections['step-4']].forEach((t,i)=>p.append(`passion${i+1}`,t));
-                p.append('wahrsagerId', appState.selections['step-2'].wahrsagerId);
+                [...appState.selections['step-3']].forEach((t,i)=>p.append(`passion${i+1}`,t));
+                p.append('wahrsagerId', appState.selections.wahrsagerId);
                 let raw = handy.replace(/\D/g, '');   // z.B. "0793513494" oder "41793513494"
                 if (raw.startsWith('0') && raw.length === 10) {
                     // national → international
@@ -680,7 +636,7 @@
                     console.warn('Ungültiges Telefonformat:', handy);
                 }
                 p.append('tel', raw);
-                p.append('level', appState.selections['step-3'].level);
+                p.append('level', appState.selections['step-2'].level);
                 const url = `${base}?${p}`;
                 console.log('Prophezeiung URL:', url);
                 fetch(url);
@@ -691,7 +647,7 @@
                 appState.formData.vorname = document.getElementById('vorname').value;
                 appState.formData.handy   = document.getElementById('handy').value;
                 generateProphezeiungURL();
-                showStep(6);
+                showStep(5);
             };
 
             const showStep = step => {
@@ -700,18 +656,17 @@
                 document.getElementById(`step-${step}`)?.classList.add('active');
                 step1Decorations.style.display = step===1 ? 'block' : 'none';
                 startBtn.style.display = step===1 ? 'block' : 'none';
-                stepNav.style.display   = step>1&&step<6 ? 'flex' : 'none';
-                neustartBtn.style.display = step===6 ? 'block' : 'none';
-                nextBtn.textContent = step===5 ? 'Absenden' : 'Weiter';
+                stepNav.style.display   = step>1&&step<5 ? 'flex' : 'none';
+                neustartBtn.style.display = step===5 ? 'block' : 'none';
+                nextBtn.textContent = step===4 ? 'Absenden' : 'Weiter';
                 checkNextButtonStatus();
-                if (step===2) setTimeout(() => { renderStep2Cards(); setupCarousel('step-2'); }, 50);
-                if (step===3) setTimeout(() => setupCarousel('step-3'), 50);
-                if (step===4) setupTopicSelector();
-                if (step===5) setupForm();
+                if (step===2) setTimeout(() => setupCarousel('step-2'), 50);
+                if (step===3) setupTopicSelector();
+                if (step===4) setupForm();
             };
 
             const resetApp = () => {
-                appState.selections = { 'step-2': {index:null}, 'step-3':{index:null}, 'step-4':[] };
+                appState.selections = { wahrsagerId: wahrsagerList[0]?.id || null, 'step-2': {index:null}, 'step-3':[] };
                 appState.formData   = { vorname:'', handy:'' };
                 document.getElementById('contact-form').reset();
                 showStep(1);
@@ -724,7 +679,7 @@
             });
             startBtn.addEventListener('click', () => showStep(2));
             nextBtn.addEventListener('click', () => {
-                if (currentStep===5) return handleFormSubmission();
+                if (currentStep===4) return handleFormSubmission();
                 if (currentStep<totalSteps) showStep(currentStep+1);
             });
             backBtn.addEventListener('click', () => { if (currentStep>1) showStep(currentStep-1); });
@@ -732,7 +687,6 @@
 
             // 6. Initialisierung
             await loadWahrsagerData();
-            renderStep2Cards();
             showStep(1);
             setupParticleEffect();
 
