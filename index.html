@@ -293,16 +293,12 @@
         }
         .start-video {
             position: absolute;
-            top: 8px; 
+            top: 8px;
             left: 8px;
             width: calc(100% - 16px);
             height: calc(100% - 16px);
             object-fit: cover;
             border-radius: 6px;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .start-video.is-active {
             opacity: 1;
         }
 
@@ -336,9 +332,7 @@
                 <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">von unseren Seher:innen!</span>
             </h1>
             <div id="start-video-container" class="mb-8">
-                 <video class="start-video" src="./images/video1.mp4" autoplay loop muted playsinline></video>
-                 <video class="start-video" src="./images/video2.mp4" autoplay loop muted playsinline></video>
-                 <video class="start-video" src="./images/video3.mp4" autoplay loop muted playsinline></video>
+                <video class="start-video" src="./images/video1.mp4" autoplay loop muted playsinline></video>
             </div>
         </div>
 
@@ -492,19 +486,6 @@
                 });
             };
 
-            // 2. Video-Rotation auf Startscreen
-            const setupVideoRotation = () => {
-                const container = document.getElementById('start-video-container');
-                if (!container) return;
-                const videos = container.querySelectorAll('.start-video');
-                let currentVideoIndex = 0;
-                videos[0]?.classList.add('is-active');
-                setInterval(() => {
-                    videos[currentVideoIndex].classList.remove('is-active');
-                    currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-                    videos[currentVideoIndex].classList.add('is-active');
-                }, 5000);
-            };
 
             // 3. App-State, Navigation und UI-Elemente
             const appState = {
@@ -777,7 +758,6 @@
             renderStep2Cards();
             showStep(1);
             setupParticleEffect();
-            setupVideoRotation();
 
         });
     </script>
