@@ -303,10 +303,10 @@
         }
 
     </style>
-    <link rel="icon" href="https://api.wahrsager.agenturhaus.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-150x150.png" sizes="32x32" />
-    <link rel="icon" href="https://api.wahrsager.agenturhaus.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-300x300.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="https://api.wahrsager.agenturhaus.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-300x300.png" />
-    <meta name="msapplication-TileImage" content="https://api.wahrsager.agenturhaus.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-300x300.png" />
+    <link rel="icon" href="https://api.fortuneteller.zooglerfascht25.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-150x150.png" sizes="32x32" />
+    <link rel="icon" href="https://api.fortuneteller.zooglerfascht25.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-300x300.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://api.fortuneteller.zooglerfascht25.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-300x300.png" />
+    <meta name="msapplication-TileImage" content="https://api.fortuneteller.zooglerfascht25.ch/wp-content/uploads/2025/06/web-app-manifest-512x512-1-300x300.png" />
 </head>
 <body class="theme-blue">
     <canvas id="particle-canvas"></canvas>
@@ -502,7 +502,7 @@
             let wahrsagerList = [];
             async function loadWahrsagerData() {
                 try {
-                    const res = await fetch('https://api.wahrsager.agenturhaus.ch/wp-json/wahrsager/v1/list');
+                    const res = await fetch('https://api.fortuneteller.zooglerfascht25.ch/wp-json/wahrsager/v1/list');
                     wahrsagerList = await res.json();
                 } catch (e) {
                     console.error('Konnte Wahrsager-Daten nicht laden:', e);
@@ -660,7 +660,7 @@
             };
 
             const generateProphezeiungURL = () => {
-                const base = 'https://api.wahrsager.agenturhaus.ch/wp-json/wahrsager/v1/gettext';
+                const base = 'https://api.fortuneteller.zooglerfascht25.ch/wp-json/wahrsager/v1/gettext';
                 const p = new URLSearchParams();
                 const { vorname, handy } = appState.formData;
                 if (vorname) p.append('firstname',vorname);
