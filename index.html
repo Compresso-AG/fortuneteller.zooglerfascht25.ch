@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hellseher App</title>
+    <title>Fortune Teller App</title>
     <!-- Tailwind CSS for styling -->
     <link rel="stylesheet" href="dist/output.css">
     <link rel="stylesheet" href="fonts.css">
@@ -320,16 +320,16 @@
 
     <div id="app-container" class="relative w-full h-full max-w-screen-xl mx-auto">
         <div id="step-1-decorations">
-            <img src="./images/key.png" alt="Alter Schlüssel" class="absolute top-8 left-8 w-24 md:w-32 lg:w-48 transform -rotate-12 hidden sm:block">
-            <img src="./images/book.png" alt="Altes Buch" class="absolute bottom-8 left-4 w-52 md:w-64 lg:w-[25rem] transform rotate-6 hidden sm:block">
-            <img src="./images/candlelight.png" alt="Kerzenlicht und Steine" class="absolute top-8 right-8 w-40 md:w-48 lg:w-64 candle-glow hidden sm:block">
-            <img src="./images/invitation.png" alt="Einladung" class="absolute bottom-8 right-8 w-56 md:w-64 lg:w-96 transform -rotate-6 hidden sm:block">
+            <img src="./images/key.png" alt="Ancient Key" class="absolute top-8 left-8 w-24 md:w-32 lg:w-48 transform -rotate-12 hidden sm:block">
+            <img src="./images/book.png" alt="Ancient Book" class="absolute bottom-8 left-4 w-52 md:w-64 lg:w-[25rem] transform rotate-6 hidden sm:block">
+            <img src="./images/candlelight.png" alt="Candlelight and Stones" class="absolute top-8 right-8 w-40 md:w-48 lg:w-64 candle-glow hidden sm:block">
+            <img src="./images/invitation.png" alt="Invitation" class="absolute bottom-8 right-8 w-56 md:w-64 lg:w-96 transform -rotate-6 hidden sm:block">
         </div>
 
         <div id="step-1" class="screen active pb-32">
              <h1 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Hol dir deine Prophezeiung</span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">von unseren Seher:innen!</span>
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Get your prophecy</span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">from our seers!</span>
             </h1>
             <div id="start-video-container" class="mb-8">
                 <video class="start-video" src="./images/video1.mp4" autoplay loop muted playsinline></video>
@@ -338,8 +338,8 @@
 
         <div id="step-2" class="screen pb-32">
              <h2 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wie willst du</span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">dein Schicksal hören?</span>
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">How do you want to</span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">hear your destiny?</span>
             </h2>
             <div class="relative w-full max-w-5xl">
                 <div id="step-2-arrow-left" class="carousel-arrow arrow-left"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg></div>
@@ -358,41 +358,41 @@
 
         <div id="step-3" class="screen pb-32" style="padding-bottom: 7rem;">
              <h2 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wähle 3 Themen – </span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">wir sagen dir, was kommt.</span>
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Choose 3 topics – </span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">we'll tell you what's coming.</span>
             </h2>
             <div id="topic-container" class="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-3xl"></div>
         </div>
 
         <div id="step-4" class="screen pb-32">
             <h2 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Wohin sollen</span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">die Sterne flüstern?</span>
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Where should</span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">the stars whisper?</span>
             </h2>
             <div class="form-card bg-paper-texture">
                 <form id="contact-form" autocomplete="off">
-                    <input type="text" id="vorname" name="vorname" placeholder="Dein Vorname" class="form-input">
-                    <input type="tel" id="handy" name="handy" value="+41" placeholder="Handynummer (no spam, versprochen)" class="form-input">
+                    <input type="text" id="vorname" name="vorname" placeholder="Your first name" class="form-input">
+                    <input type="tel" id="handy" name="handy" value="+41" placeholder="Mobile number (no spam, promised)" class="form-input">
                 </form>
             </div>
         </div>
 
         <div id="step-5" class="screen">
              <h2 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Deine Prophezeiung kommt</span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">IN KÜRZE PER SMS.</span>
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Your prophecy will arrive</span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">SHORTLY BY SMS.</span>
             </h2>
-            <p class="text-lg font-body-text max-w-md">Bis dahin: Hol dir einen Zaubertrank an der Bar – wer weiß, vielleicht macht er dich noch hellsichtiger!</p>
+            <p class="text-lg font-body-text max-w-md">Until then: Get yourself a magic potion at the bar – who knows, maybe it'll make you even more clairvoyant!</p>
         </div>
 
         <!-- Navigation Buttons -->
         <div id="nav-container" class="fixed bottom-0 left-0 right-0 p-4 flex justify-center z-20">
-            <button id="start-btn" class="btn bg-paper-texture px-16 py-4 text-2xl sm:text-3xl">Zeig mir mein Schicksal</button>
+            <button id="start-btn" class="btn bg-paper-texture px-16 py-4 text-2xl sm:text-3xl">Show me my destiny</button>
             <div id="step-nav" class="hidden w-full max-w-md flex justify-between gap-4">
-                <button id="back-btn" class="btn bg-paper-texture w-1/2 py-3 text-xl sm:text-2xl">Zurück</button>
-                <button id="next-btn" class="btn bg-paper-texture w-1/2 py-3 text-xl sm:text-2xl" disabled>Weiter</button>
+                <button id="back-btn" class="btn bg-paper-texture w-1/2 py-3 text-xl sm:text-2xl">Back</button>
+                <button id="next-btn" class="btn bg-paper-texture w-1/2 py-3 text-xl sm:text-2xl" disabled>Next</button>
             </div>
-             <button id="neustart-btn" class="hidden btn bg-paper-texture px-16 py-4 text-2xl sm:text-3xl">Neustart</button>
+             <button id="neustart-btn" class="hidden btn bg-paper-texture px-16 py-4 text-2xl sm:text-3xl">Restart</button>
         </div>
     </div>
     <script src="./dist/cleave.min.js"></script>
@@ -492,7 +492,7 @@
                         appState.selections.wahrsagerId = wahrsagerList[0].id;
                     }
                 } catch (e) {
-                    console.error('Konnte Wahrsager-Daten nicht laden:', e);
+                    console.error('Could not load fortune teller data:', e);
                 }
             }
 
@@ -632,13 +632,13 @@
                 } else if (raw.startsWith('41') && raw.length === 11) {
                     // schon gut so
                 } else {
-                    // hier könntest du noch einen Fehler werfen, falls raw nicht passt
-                    console.warn('Ungültiges Telefonformat:', handy);
+                    // here you could throw an error if raw doesn't fit
+                    console.warn('Invalid phone format:', handy);
                 }
                 p.append('tel', raw);
                 p.append('level', appState.selections['step-2'].level);
                 const url = `${base}?${p}`;
-                console.log('Prophezeiung URL:', url);
+                console.log('Prophecy URL:', url);
                 fetch(url);
                 return url;
             };
@@ -658,7 +658,7 @@
                 startBtn.style.display = step===1 ? 'block' : 'none';
                 stepNav.style.display   = step>1&&step<5 ? 'flex' : 'none';
                 neustartBtn.style.display = step===5 ? 'block' : 'none';
-                nextBtn.textContent = step===4 ? 'Absenden' : 'Weiter';
+                nextBtn.textContent = step===4 ? 'Submit' : 'Next';
                 checkNextButtonStatus();
                 if (step===2) setTimeout(() => setupCarousel('step-2'), 50);
                 if (step===3) setupTopicSelector();
