@@ -170,6 +170,52 @@
             transition: opacity 0.5s ease-in-out;
         }
         .screen.active { display: flex; opacity: 1; }
+
+        /* Prophecy Display Styling */
+        #prophecy-display {
+            padding: 1rem;
+            max-width: 1000px;
+        }
+        #prophecy-image-container {
+            max-width: 250px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            #prophecy-image-container {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+        .prophecy-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .prophecy-content-wrapper {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+        }
+        #prophecy-text {
+            color: #3D2B1F;
+            text-align: left;
+            line-height: 1.8;
+        }
+        .prophecy-text-card {
+            background-image: url('./images/papertexture.png');
+            background-size: cover;
+            border: 3px solid #5A4A3A;
+            padding: 1.5rem !important;
+        }
+        @media (min-width: 768px) {
+            .prophecy-text-card {
+                padding: 2rem !important;
+            }
+        }
         
         .description { 
             width: 90%; 
@@ -366,18 +412,58 @@
 
         <div id="step-4" class="screen pb-32">
             <h2 class="font-title text-shadow mb-8">
-                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Where should</span><br>
-                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">the stars whisper?</span>
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">What's your</span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">first name?</span>
             </h2>
             <div class="form-card bg-paper-texture">
                 <form id="contact-form" autocomplete="off">
                     <input type="text" id="vorname" name="vorname" placeholder="Your first name" class="form-input">
+                </form>
+            </div>
+        </div>
+
+        <div id="step-5" class="screen pb-32">
+            <div id="loading-prophecy" class="flex flex-col items-center">
+                <h2 class="font-title text-shadow mb-8">
+                    <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Generating your</span><br>
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">prophecy...</span>
+                </h2>
+            </div>
+            <div id="prophecy-display" class="hidden flex flex-col items-center mx-auto w-full">
+                <h2 class="font-title text-shadow mb-6">
+                    <span class="text-3xl sm:text-4xl md:text-5xl text-white">Your prophecy</span><br>
+                    <span class="text-2xl sm:text-3xl md:text-4xl text-yellow-400">has been revealed!</span>
+                </h2>
+                <div class="prophecy-content-wrapper mb-6">
+                    <div id="prophecy-image-container" class="flex-shrink-0">
+                        <div class="bg-paper-texture rounded-lg shadow-lg p-2">
+                            <img id="prophecy-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Fortune Teller" class="w-full rounded border-2 border-yellow-700">
+                        </div>
+                    </div>
+                    <div class="prophecy-text-card rounded-lg shadow-lg" style="flex: 1; min-width: 0;">
+                        <p id="prophecy-text" class="text-base md:text-lg font-body-text whitespace-pre-wrap"></p>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-center mt-6 mb-8">
+                    <button id="get-video-btn" class="btn bg-paper-texture px-10 py-3 text-lg sm:text-xl">Get as Video via SMS</button>
+                    <button id="skip-video-btn" class="btn bg-paper-texture px-10 py-3 text-lg sm:text-xl opacity-70 hover:opacity-100">No thanks</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-6" class="screen pb-32">
+            <h2 class="font-title text-shadow mb-8">
+                <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Want your prophecy</span><br>
+                <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">as a video?</span>
+            </h2>
+            <div class="form-card bg-paper-texture">
+                <form id="video-form" autocomplete="off">
                     <input type="tel" id="handy" name="handy" value="+41" placeholder="Mobile number (no spam, promised)" class="form-input">
                 </form>
             </div>
         </div>
 
-        <div id="step-5" class="screen">
+        <div id="step-7" class="screen">
              <h2 class="font-title text-shadow mb-8">
                 <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">Your prophecy will arrive</span><br>
                 <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400">SHORTLY BY SMS.</span>
@@ -469,10 +555,11 @@
                     'step-2': { index: null, level: null },
                     'step-3': []
                 },
-                formData: { vorname: '', handy: '' }
+                formData: { vorname: '', handy: '' },
+                prophecy: { uuid: null, text: '', image: '' }
             };
             let currentStep = 1;
-            const totalSteps = 5;
+            const totalSteps = 7;
             const screens = document.querySelectorAll('.screen');
             const startBtn = document.getElementById('start-btn');
             const backBtn = document.getElementById('back-btn');
@@ -587,11 +674,19 @@
             function setupForm() {
                 const form = document.getElementById('contact-form');
                 const vor = document.getElementById('vorname');
-                const tel = document.getElementById('handy');
-                [vor, tel].forEach(el => el.value = appState.formData[el.id] || '');
+                vor.value = appState.formData.vorname || '';
                 form.addEventListener('input', () => {
                     appState.formData.vorname = vor.value.trim();
-                    appState.formData.handy   = tel.value.trim();
+                    checkNextButtonStatus();
+                });
+            }
+
+            function setupVideoForm() {
+                const form = document.getElementById('video-form');
+                const tel = document.getElementById('handy');
+                tel.value = appState.formData.handy || '+41';
+                form.addEventListener('input', () => {
+                    appState.formData.handy = tel.value.trim();
                     checkNextButtonStatus();
                 });
             }
@@ -610,45 +705,137 @@
                 if (currentStep===2) en = appState.selections['step-2'].index!==null;
                 if (currentStep===3) en = appState.selections['step-3'].length===3;
                 if (currentStep===4) {
-                    const { vorname, handy } = appState.formData;
-                    en = vorname && handy && validatePhoneNumber(handy);
+                    const { vorname } = appState.formData;
+                    en = vorname && vorname.length > 0;
+                }
+                if (currentStep===6) {
+                    const { handy } = appState.formData;
+                    en = handy && validatePhoneNumber(handy);
                 }
                 nextBtn.disabled = !en;
             };
 
-            const generateProphezeiungURL = () => {
+            // Call 1: Get text and image prophecy (without tel)
+            const callGetTextAPI = async () => {
                 const base = 'https://api.fortuneteller.zooglerfascht25.ch/wp-json/wahrsager/v1/gettext';
                 const p = new URLSearchParams();
-                const { vorname, handy } = appState.formData;
-                if (vorname) p.append('firstname',vorname);
-                [...appState.selections['step-3']].forEach((t,i)=>p.append(`passion${i+1}`,t));
+                const { vorname } = appState.formData;
+                if (vorname) p.append('firstname', vorname);
+                [...appState.selections['step-3']].forEach((t, i) => p.append(`passion${i+1}`, t));
                 p.append('wahrsagerId', appState.selections.wahrsagerId);
-                let raw = handy.replace(/\D/g, '');   // z.B. "0793513494" oder "41793513494"
-                if (raw.startsWith('0') && raw.length === 10) {
-                    // national → international
-                    raw = '41' + raw.slice(1);
-                } else if (raw.startsWith('0041') && raw.length === 12) {
-                    // "004179..." → "4179..."
-                    raw = raw.slice(2);
-                } else if (raw.startsWith('41') && raw.length === 11) {
-                    // schon gut so
-                } else {
-                    // here you could throw an error if raw doesn't fit
-                    console.warn('Invalid phone format:', handy);
-                }
-                p.append('tel', raw);
                 p.append('level', appState.selections['step-2'].level);
+
                 const url = `${base}?${p}`;
-                console.log('Prophecy URL:', url);
-                fetch(url);
-                return url;
+                console.log('Call 1 - Get Text API:', url);
+
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    if (data.uuid && data.text && data.image) {
+                        appState.prophecy.uuid = data.uuid;
+                        appState.prophecy.text = data.text;
+                        appState.prophecy.image = data.image;
+                        return true;
+                    } else {
+                        console.error('Invalid response from API:', data);
+                        alert('Fehler beim Erstellen der Prophezeiung. Bitte versuche es erneut.');
+                        return false;
+                    }
+                } catch (e) {
+                    console.error('Error calling gettext API:', e);
+                    alert('Fehler beim Erstellen der Prophezeiung. Bitte versuche es erneut.');
+                    return false;
+                }
             };
 
-            const handleFormSubmission = () => {
-                appState.formData.vorname = document.getElementById('vorname').value;
-                appState.formData.handy   = document.getElementById('handy').value;
-                generateProphezeiungURL();
+            // Call 2: Generate video with phone number
+            const callGenerateVideoAPI = async () => {
+                const base = 'https://api.fortuneteller.zooglerfascht25.ch/wp-json/wahrsager/v1/generate-video';
+                const { handy } = appState.formData;
+
+                // Convert phone to international format
+                let raw = handy.replace(/\D/g, '');
+                if (raw.startsWith('0') && raw.length === 10) {
+                    raw = '41' + raw.slice(1);
+                } else if (raw.startsWith('0041') && raw.length === 12) {
+                    raw = raw.slice(2);
+                } else if (raw.startsWith('41') && raw.length === 11) {
+                    // already correct
+                } else {
+                    console.warn('Invalid phone format:', handy);
+                }
+
+                const payload = {
+                    uuid: appState.prophecy.uuid,
+                    tel: raw
+                };
+
+                console.log('Call 2 - Generate Video API:', base, payload);
+
+                try {
+                    const response = await fetch(base, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+
+                    if (data.status === 'video_generation_started') {
+                        return true;
+                    } else {
+                        console.error('Invalid response from video API:', data);
+                        alert('Fehler beim Starten der Video-Generierung. Bitte versuche es erneut.');
+                        return false;
+                    }
+                } catch (e) {
+                    console.error('Error calling generate-video API:', e);
+                    alert('Fehler beim Starten der Video-Generierung. Bitte versuche es erneut.');
+                    return false;
+                }
+            };
+
+            const handleFormSubmission = async () => {
+                appState.formData.vorname = document.getElementById('vorname').value.trim();
                 showStep(5);
+
+                // Show loading state
+                document.getElementById('loading-prophecy').style.display = 'flex';
+                document.getElementById('prophecy-display').classList.add('hidden');
+
+                // Call API to get text and image
+                const success = await callGetTextAPI();
+
+                if (success) {
+                    // Hide loading and show prophecy
+                    document.getElementById('loading-prophecy').style.display = 'none';
+                    document.getElementById('prophecy-display').classList.remove('hidden');
+                    document.getElementById('prophecy-text').textContent = appState.prophecy.text;
+                    document.getElementById('prophecy-image').src = appState.prophecy.image;
+                } else {
+                    // Go back to step 4 on error
+                    showStep(4);
+                }
+            };
+
+            const handleVideoSubmission = async () => {
+                appState.formData.handy = document.getElementById('handy').value.trim();
+
+                // Disable button during API call
+                nextBtn.disabled = true;
+                nextBtn.textContent = 'Sending...';
+
+                const success = await callGenerateVideoAPI();
+
+                if (success) {
+                    showStep(7);
+                } else {
+                    // Re-enable button on error
+                    nextBtn.disabled = false;
+                    nextBtn.textContent = 'Submit';
+                }
             };
 
             const showStep = step => {
@@ -657,19 +844,29 @@
                 document.getElementById(`step-${step}`)?.classList.add('active');
                 step1Decorations.style.display = step===1 ? 'block' : 'none';
                 startBtn.style.display = step===1 ? 'block' : 'none';
-                stepNav.style.display   = step>1&&step<5 ? 'flex' : 'none';
-                neustartBtn.style.display = step===5 ? 'block' : 'none';
-                nextBtn.textContent = step===4 ? 'Submit' : 'Next';
+                stepNav.style.display   = (step>1&&step<=4) || step===6 ? 'flex' : 'none';
+                neustartBtn.style.display = step===7 ? 'block' : 'none';
+
+                // Update next button text
+                if (step===4) nextBtn.textContent = 'Show my prophecy';
+                else if (step===6) nextBtn.textContent = 'Send Video';
+                else nextBtn.textContent = 'Next';
+
                 checkNextButtonStatus();
                 if (step===2) setTimeout(() => setupCarousel('step-2'), 50);
                 if (step===3) setupTopicSelector();
                 if (step===4) setupForm();
+                if (step===6) setupVideoForm();
             };
 
             const resetApp = () => {
                 appState.selections = { wahrsagerId: wahrsagerList[0]?.id || null, 'step-2': {index:null}, 'step-3':[] };
                 appState.formData   = { vorname:'', handy:'' };
+                appState.prophecy   = { uuid: null, text: '', image: '' };
                 document.getElementById('contact-form').reset();
+                if (document.getElementById('video-form')) {
+                    document.getElementById('video-form').reset();
+                }
                 showStep(1);
             };
 
@@ -681,10 +878,24 @@
             startBtn.addEventListener('click', () => showStep(2));
             nextBtn.addEventListener('click', () => {
                 if (currentStep===4) return handleFormSubmission();
+                if (currentStep===6) return handleVideoSubmission();
                 if (currentStep<totalSteps) showStep(currentStep+1);
             });
-            backBtn.addEventListener('click', () => { if (currentStep>1) showStep(currentStep-1); });
+            backBtn.addEventListener('click', () => {
+                // Don't allow going back from step 5 (prophecy display)
+                if (currentStep>1 && currentStep!==5) showStep(currentStep-1);
+            });
             neustartBtn.addEventListener('click', resetApp);
+
+            // Get Video button - goes to step 6 (phone input)
+            document.getElementById('get-video-btn').addEventListener('click', () => {
+                showStep(6);
+            });
+
+            // Skip Video button - restarts the app
+            document.getElementById('skip-video-btn').addEventListener('click', () => {
+                resetApp();
+            });
 
             // 6. Initialisierung
             await loadWahrsagerData();
